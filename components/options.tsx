@@ -43,6 +43,7 @@ export default function Options() {
                 className="w-full bg-gray-800 text-white p-2 rounded-l-lg focus:outline-none "
                 onChange={onChangeHandler}
             >
+                {/* we have to send the option selected to codeEditor.js file */}
                 <option value="syntax">Syntax (Optional)</option>
                 {options.map((option) => (
                     <option key={option} value={option}>
@@ -124,6 +125,17 @@ export default function Options() {
                 <option id="1y">1 Year</option>
             </select>
         </div>
+        <button id = "save-button" className="flex  items-center px-4 py-2 bg-blue-500 text-white font-medium text-sm rounded shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
+            <svg
+                className="w-5 h-5 mr-2"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+            >
+                <path d="M8 2a2 2 0 00-2 2v1H4a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-2V4a2 2 0 00-2-2H8zm0 2h4v1H8V4zm-4 3h12v9H4V7zm3 2a1 1 0 100 2h6a1 1 0 100-2H7z" />
+            </svg>
+            Save Snippet
+        </button>
       </div>
     );
 }
