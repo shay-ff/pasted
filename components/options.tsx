@@ -3,34 +3,52 @@ import { useState } from "react";
 import {nanoid} from "nanoid";
 import {FaDice, FaLightbulb} from "react-icons/fa";
 import { PiPlaceholder } from "react-icons/pi";
+import { set } from "mongoose";
 
 export default function Options() {
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [data, setData] = useState(undefined);
+    const options = [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "JSON",
+        "React",
+        "Redux",
+        "Cplusplus",
+        "Csharp",
+        "Java",
+        "Python",
+        "SQL",
+        "TypeScript",
+        "Swift",
+        "Go",
+        "Kotlin",
+        "Ruby",
+        "PHP",
+        "Rust",
+        "MATLAB",
+    ];
+    const onChangeHandler = (event) => {
+        setData(event.target.value);
+    }
     return (
-        <div className="p-6 bg-gray-900 text-white max-w-md mx-auto rounded-lg shadow-lg">
+        // give this div a border and padding
+        <div className="p-6 bg-[#040200] border text-white max-w-md mx-auto rounded-lg shadow-lg">
         {/* Syntax Selector */}
         <div className="mb-4">
-            <label className="block text-sm mb-2">Syntax (Optional)</label>
+            
             <div className="flex items-center border border-gray-700 rounded-lg">
             <select
-              className="w-full bg-gray-800 text-white p-2 rounded-l-lg focus:outline-none scroll"
+                className="w-full bg-gray-800 text-white p-2 rounded-l-lg focus:outline-none "
+                onChange={onChangeHandler}
             >
-                <option id="plain-text" value="text">Plain Text</option>
-                <option id="javascript" value="javascript">JavaScript</option>
-                <option id="python" value="python">Python</option>
-                <option id="Csharp" value="Csharp">C#</option>
-                <option id="C" value="C">C</option>
-                <option id="sql" value="sql">SQL</option>
-                <option id="java" value="java">Java</option>
-                <option id="cplusplus" value="Cplusplus">C++</option>
-                <option id="php" value="php">PHP</option>
-                <option id="swift" value="swift">Swift</option>
-                <option id="go" value="go">Go</option>
-                <option id="kotlin" value="kotlin">Kotlin</option>
-                <option id="ruby" value="ruby">Ruby</option>
-                <option id="typescript" value="typescript">TypeScript</option>
-                <option id="rust" value="rust">Rust</option>
-                <option id="matlab" value="matlab">MATLAB</option>
+                <option value="syntax">Syntax (Optional)</option>
+                {options.map((option) => (
+                    <option key={option} value={option}>
+                        {option}
+                    </option>
+                ))}
             </select>
             {/* <button className="p-2 text-gray-400 hover:text-white">
               <FaLightbulb />
@@ -52,6 +70,7 @@ export default function Options() {
         <div className="mb-4">
             <label className="block text-sm mb-2">Description (Optional)</label>
             <textarea
+                id= "description"
                 className="w-full bg-gray-800 border border-gray-700 text-white p-2 rounded-lg focus:outline-none"
                 placeholder="Enter description..."
                 rows={3}
@@ -65,12 +84,12 @@ export default function Options() {
                 <input
                     id="password"
                     type={passwordVisible ? "text" : "password"}
-                    className="w-full bg-gray-800 text-white p-2 rounded-l-lg focus:outline-none"
+                    className="w-full bg-gray-800 text-white p-2 rounded-l-lg focus:outline-none opacity-75"
                     placeholder="Enter password..."
                 />
                 <button
                     onClick={() => setPasswordVisible(!passwordVisible)}
-                    className="p-2 text-gray-400 hover:text-white"
+                    className="p-2 text-gray-400 hover:text-white "
                 >
                 {passwordVisible ? "🙈" : "👁️"}
                 </button>
@@ -82,7 +101,7 @@ export default function Options() {
                             (passwordInput as HTMLInputElement).value = nanoid(8);
                         }
                     }}
-                    className="p-2 text-gray-400 hover:text-white">
+                    className="p-2 text-gray-400 hover:text-white ">
                 <FaDice />
                 </button>
             </div>
@@ -92,7 +111,7 @@ export default function Options() {
         <div>
             <label className="block text-sm mb-2">Expire After (Optional)</label>
             <select
-                className="w-full bg-gray-800 border border-gray-700 text-white p-2 rounded-lg focus:outline-none"
+                className="w-full bg-gray-800 border border-gray-700 text-white p-2 rounded-lg focus:outline-none opacity-75"
             >
                 <option id="never">Never</option>
                 <option id="once">Burn After Read</option>
